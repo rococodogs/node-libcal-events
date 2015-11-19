@@ -13,6 +13,8 @@ module.exports = function libCalFeed (iid, cals, cb) {
   }
 
   if (typeof cals === 'string') cals = [cals]
+  // make a copy of cals that we can mutate
+  var copy = cals.slice()
 
   var start = opts.start || todaysDate()
   var end = opts.end   || nextMonthsDate()
@@ -22,7 +24,7 @@ module.exports = function libCalFeed (iid, cals, cb) {
 
   ;(function getFeed () {
     var cid
-    if (cid = cals.shift()) {
+    if (cid = copy.shift()) {
       https.get(calUrl(cid), function (res) {
         var b = ''
         
