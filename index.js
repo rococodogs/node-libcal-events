@@ -8,7 +8,7 @@ module.exports = function libCalFeed (iid, cals, cb) {
   if (typeof iid === 'object') {
     opts = iid
     cb = cals
-    cals = opts.calendar
+    cals = opts.calendars || opts.calendar
     iid = opts.iid
   }
 
@@ -17,7 +17,10 @@ module.exports = function libCalFeed (iid, cals, cb) {
   var copy = cals.slice()
 
   var start = opts.start || todaysDate()
-  var end = opts.end   || nextMonthsDate()
+  var end = opts.end || nextMonthsDate()
+
+  if (start instanceof Date) start = formatDate(start)
+  if (end instanceof Date) end = formatDate(end)
 
   // output
   var all = []
@@ -46,7 +49,7 @@ module.exports = function libCalFeed (iid, cals, cb) {
   })()
 
   function calUrl (cal) {
-    return require('util').format(
+    return util.format(
       'https://api3.libcal.com/process_cal.php?c=%d&sp=%d&iid=%d&start=%s&end=%s&_=%s',
       cal,
       1,  // always show past events: if start >= today, they won't be visible anyway
@@ -59,21 +62,20 @@ module.exports = function libCalFeed (iid, cals, cb) {
 }
 
 function todaysDate () {
-  var d = new Date()
-  return [
-    d.getFullYear(), 
-    zeroPad(d.getMonth() + 1),
-    zeroPad(d.getDate())
-  ].join('-')
+  return formatDate(new Date())
 }
 
 function nextMonthsDate () {
   var d = new Date()
   var n = new Date(d.getFullYear(), d.getMonth() + 1, d.getDate())
+  return formatDate(n)
+}
+
+function formatDate (d) {
   return [
-    n.getFullYear(),
-    zeroPad(n.getMonth() + 1),
-    zeroPad(n.getDate())
+    d.getFullYear(),
+    zeroPad(d.getMonth() + 1),
+    zeroPad(d.getDate())
   ].join('-')
 }
 

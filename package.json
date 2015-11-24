@@ -1,12 +1,12 @@
 {
   "name": "libcal",
-  "version": "0.0.1",
-  "description": "",
+  "version": "1.0.0",
+  "description": "Retreive Springshare LibCal events as JSON objects.",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "keywords": [],
+  "keywords": ["libcal", "library", "calendar"],
   "author": "Adam Malantonio <adam.malantonio@gmail.com>",
   "license": "MIT"
 }
