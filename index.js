@@ -12,7 +12,8 @@ module.exports = function libCalFeed (iid, cals, cb) {
     iid = opts.iid
   }
 
-  if (typeof cals === 'string') cals = [cals]
+  if (!Array.isArray(cals)) cals = [cals]
+
   // make a copy of cals that we can mutate
   var copy = cals.slice()
 
@@ -30,7 +31,6 @@ module.exports = function libCalFeed (iid, cals, cb) {
     if (cid = copy.shift()) {
       https.get(calUrl(cid), function (res) {
         var b = ''
-        
         if (res.statusCode !== 200)
           return cb(new Error('There was an error while obtaining the feed'))
         
