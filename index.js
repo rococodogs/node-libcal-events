@@ -14,6 +14,8 @@ module.exports = function libCalFeed (iid, cals, cb) {
 
   if (!Array.isArray(cals)) cals = [cals]
 
+  var base = opts.base_url || 'https://api3.libcal.com'
+
   // make a copy of cals that we can mutate
   var copy = cals.slice()
 
@@ -50,7 +52,7 @@ module.exports = function libCalFeed (iid, cals, cb) {
 
   function calUrl (cal) {
     return util.format(
-      'https://api3.libcal.com/process_cal.php?c=%d&sp=%d&iid=%d&start=%s&end=%s&_=%s',
+      base + '/process_cal.php?c=%d&sp=%d&iid=%d&start=%s&end=%s&_=%s',
       cal,
       1,  // always show past events: if start >= today, they won't be visible anyway
       iid,

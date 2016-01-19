@@ -36,6 +36,7 @@ key         | value
 `calendars` | the id(s) of the calendar requested (use an array for multiples)
 `start`     | start date for events (either `Date` object or `YYYY-MM-DD` string)
 `end`       | end date for events (either `Date` object or `YYYY-MM-DD` string)
+`base_url`  | if using a [proxy for LibCal][lc-proxy], the url to use
 
 ## Okay, but what do these events objects look like?
 
@@ -68,3 +69,4 @@ MIT
 
 [lc]: http://springshare.com/libcal/
 [blarg]: http://adam.malantonio.com/blog/2015/11/16/get-yr-libcal-feed-as-json.html
+[lc-proxy]: https://github.com/malantonio/php-libcal-proxy
