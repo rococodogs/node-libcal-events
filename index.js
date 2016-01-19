@@ -18,7 +18,7 @@ module.exports = function libCalFeed (iid, cals, cb) {
   var copy = cals.slice()
 
   var start = opts.start || todaysDate()
-  var end = opts.end || nextMonthsDate()
+  var end = opts.end || todaysDate()
 
   if (start instanceof Date) start = formatDate(start)
   if (end instanceof Date) end = formatDate(end)
@@ -33,7 +33,7 @@ module.exports = function libCalFeed (iid, cals, cb) {
         var b = ''
         if (res.statusCode !== 200)
           return cb(new Error('There was an error while obtaining the feed'))
-        
+
         res.setEncoding('utf8')
         res.on('data', function (d) { b += d })
         res.on('end', function () {
