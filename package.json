@@ -1,5 +1,5 @@
 {
-  "name": "libcal",
+  "name": "libcal-events",
   "version": "1.0.0",
   "description": "Retreive Springshare LibCal events as JSON objects.",
   "main": "index.js",

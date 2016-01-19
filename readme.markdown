@@ -3,14 +3,14 @@
 Retreive [LibCal][lc] events as JSON objects. I wrote a [Blog Post™][blarg] about how
 this works (tldr: it's pulling the same data as LibCal's calendar widgets).
 
-**Note:** this is currently only pulling Calendar events, as a JSON feed of 
+**Note:** this is currently only pulling Calendar events, as a JSON feed of
 library/branch hours already exists. Not too sure how this works with room bookings
 either.
 
 ## usage
 
 ```javascript
-var libcalEvents = require('libcal-feed')
+var libcalEvents = require('libcal-events')
 var iid = 123
 var calendars = [1111, 1212]
 
